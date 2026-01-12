@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS Showcase - ME-RMUTR-2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        /* Advanced Showcase Styles */
+        .showcase-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .demo-section {
+            margin-bottom: 80px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .demo-item {
+            padding: 30px;
+        }
+
+        /* Advanced 3D Card */
+        .card-3d {
+            perspective: 1000px;
+            height: 300px;
+        }
+
+        .card-3d-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover .card-3d-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-3d-front,
+        .card-3d-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .card-3d-front {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .card-3d-back {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            transform: rotateY(180deg);
+        }
+
+        /* Parallax Card */
+        .parallax-card {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            cursor: pointer;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .parallax-bg {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(249, 115, 22, 0.3));
+        }
+
+        .parallax-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        /* Neumorphism Card */
+        .neuro-card {
+            background: linear-gradient(145deg, #1e1010, #2a1616);
+            box-shadow:
+                20px 20px 60px #0a0404,
+                -20px -20px 60px #3a1e1e;
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .neuro-card:hover {
+            box-shadow:
+                10px 10px 30px #0a0404,
+                -10px -10px 30px #3a1e1e;
+        }
+
+        /* Neon Button */
+        .neon-button {
+            position: relative;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: transparent;
+            border: 3px solid #ef4444;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .neon-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #ef4444, transparent);
+            transition: left 0.5s ease;
+        }
+
+        .neon-button:hover:before {
+            left: 100%;
+        }
+
+        .neon-button:hover {
+            box-shadow:
+                0 0 10px #ef4444,
+                0 0 20px #ef4444,
+                0 0 40px #ef4444,
+                0 0 80px #ef4444;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(239, 68, 68, 0.1);
+            border-top-color: #ef4444;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Pulse Loader */
+        .pulse-loader {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .pulse-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            border-radius: 50%;
+            animation: pulse-dot 1.4s ease-in-out infinite;
+        }
+
+        .pulse-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .pulse-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ef4444, #f97316, #f43f5e);
+            border-radius: 50px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .progress-animated {
+            animation: progress-animate 2s ease-in-out infinite;
+        }
+
+        @keyframes progress-animate {
+
+            0%,
+            100% {
+                width: 30%;
+            }
+
+            50% {
+                width: 90%;
+            }
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 70px;
+            height: 34px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--glass-border);
+            border-radius: 34px;
+            transition: 0.4s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background: #94a3b8;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        input:checked+.toggle-slider {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            border-color: #ef4444;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(36px);
+            background: white;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 30px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #ef4444;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ef4444, #f97316);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Accordion */
+        .accordion-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 25px 20px;
+            color: #94a3b8;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ef4444;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            color: white;
+            text-align: center;
+            padding: 8px 15px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #f97316 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: var(--primary-dark);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 3px;
+            background: linear-gradient(135deg, #ef4444, #f97316, #f43f5e);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        /* Morphing Shape */
+        .morph-shape {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+
+            0%,
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            25% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+
+            50% {
+                border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+            }
+
+            75% {
+                border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%;
+            }
+        }
+
+        /* Text Glitch Effect */
+        .glitch {
+            position: relative;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ef4444;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #f97316;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(61px, 9999px, 91px, 0);
+            }
+
+            20% {
+                clip: rect(89px, 9999px, 72px, 0);
+            }
+
+            40% {
+                clip: rect(28px, 9999px, 15px, 0);
+            }
+
+            60% {
+                clip: rect(55px, 9999px, 100px, 0);
+            }
+
+            80% {
+                clip: rect(12px, 9999px, 68px, 0);
+            }
+
+            100% {
+                clip: rect(77px, 9999px, 34px, 0);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip: rect(65px, 9999px, 119px, 0);
+            }
+
+            20% {
+                clip: rect(52px, 9999px, 36px, 0);
+            }
+
+            40% {
+                clip: rect(79px, 9999px, 5px, 0);
+            }
+
+            60% {
+                clip: rect(23px, 9999px, 96px, 0);
+            }
+
+            80% {
+                clip: rect(41px, 9999px, 62px, 0);
+            }
+
+            100% {
+                clip: rect(88px, 9999px, 14px, 0);
+            }
+        }
+
+        /* Wave Animation */
+        .wave-text {
+            display: flex;
+            gap: 5px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .wave-text span {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+
+        .wave-text span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .wave-text span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .wave-text span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .wave-text span:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .wave-text span:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .wave-text span:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Floating Card */
+        .floating-card {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Skew on Hover */
+        .skew-card {
+            transition: all 0.4s ease;
+        }
+
+        .skew-card:hover {
+            transform: skew(-5deg, -2deg) scale(1.05);
+        }
+
+        /* Text Reveal */
+        .text-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-reveal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #ef4444, transparent);
+            animation: reveal 3s ease-in-out infinite;
+        }
+
+        @keyframes reveal {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Matrix Background */
+        .matrix-bg {
+            position: relative;
+            height: 300px;
+            background: #000;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .matrix-text {
+            position: absolute;
+            color: #0f0;
+            font-family: monospace;
+            white-space: nowrap;
+            animation: matrix-fall 10s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes matrix-fall {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Grid Items */
+        .grid-showcase {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .grid-item-full {
+            grid-column: span 12;
+        }
+
+        .grid-item-half {
+            grid-column: span 6;
+        }
+
+        .grid-item-third {
+            grid-column: span 4;
+        }
+
+        .grid-item-quarter {
+            grid-column: span 3;
+        }
+
+        @media (max-width: 768px) {
+
+            .grid-item-half,
+            .grid-item-third,
+            .grid-item-quarter {
+                grid-column: span 12;
+            }
+        }
+
+        /* Code Block Enhanced */
+        .code-enhanced {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-enhanced::before {
+            content: '< / >';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #ef4444;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .code-line {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .code-keyword {
+            color: #f97316;
+        }
+
+        .code-string {
+            color: #10b981;
+        }
+
+        .code-comment {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .code-function {
+            color: #3b82f6;
+        }
+
+        .code-property {
+            color: #ef4444;
+        }
+
+        /* Skeleton Loader */
+        .skeleton {
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.05) 25%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0.05) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+            border-radius: 8px;
+        }
+
+        .skeleton-line {
+            height: 16px;
+            margin-bottom: 10px;
+        }
+
+        .skeleton-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Typing Effect */
+        .typing {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            border-right: 3px solid #ef4444;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #ef4444;
+            }
+        }
+
+        /* Animated Background for Header */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle, rgba(239, 68, 68, 0.1) 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: moveDots 20s linear infinite;
+        }
+
+        @keyframes moveDots {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="hero" style="min-height: 60vh; padding: 100px 20px 60px; position: relative;">
+        <div class="animated-bg"></div>
+
+        <div style="position: relative; z-index: 1; text-align: center;">
+            <h1 class="glitch gradient-text tech-font" data-text="ADVANCED CSS">
+                ADVANCED CSS
+            </h1>
+            <p class="section-subtitle" style="max-width: 800px; margin: 20px auto;">
+                แสดงเทคนิค CSS ขั้นสูง เอฟเฟกต์พิเศษ และ Animation ที่ซับซ้อน<br>
+                สำหรับธีม ME-RMUTR-2026
+            </p>
+        </div>
+    </div>
+
+    <div class="showcase-container">
+
+        <!-- 3D Effects Section -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🎲 3D Effects</h2>
+            <p class="section-subtitle">เอฟเฟกต์ 3D ขั้นสูง</p>
+
+            <div class="demo-grid">
+                <div class="card-3d">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <h3 class="gradient-text tech-font">HOVER ME</h3>
+                            <p style="color: #94a3b8; margin-top: 10px;">3D Flip Card</p>
+                        </div>
+                        <div class="card-3d-back">
+                            <h3 style="color: white; font-size: 1.5rem; margin-bottom: 15px;">Back Side!</h3>
+                            <p style="color: white;">การ์ดพลิกแบบ 3D</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card demo-item" style="display: flex; align-items: center; justify-content: center;">
+                    <div class="morph-shape"></div>
+                </div>
+
+                <div class="glass-card demo-item neuro-card">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Neumorphism</h3>
+                    <p style="color: #94a3b8;">
+                        การออกแบบแบบ Soft UI ด้วย Shadow ที่นุ่มนวล
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax & Interactive -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🎨 Interactive Cards</h2>
+            <p class="section-subtitle">การ์ดที่โต้ตอบได้</p>
+
+            <div class="demo-grid">
+                <div class="glass-card demo-item parallax-card" id="parallaxCard">
+                    <div class="parallax-layer parallax-bg"></div>
+                    <div class="parallax-layer parallax-content">
+                        <h3 class="gradient-text" style="font-size: 2rem; margin-bottom: 10px;">Parallax</h3>
+                        <p style="color: #e2e8f0;">เลื่อนเมาส์เพื่อดูเอฟเฟกต์</p>
+                    </div>
+                </div>
+
+                <div class="glass-card demo-item ripple"
+                    style="cursor: pointer; display: flex; align-items: center; justify-content: center; flex-direction: column; height: 400px;">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Ripple Effect</h3>
+                    <p style="color: #94a3b8;">Hover เพื่อดูคลื่น</p>
+                </div>
+
+                <div class="glass-card demo-item skew-card floating-card">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Floating & Skew</h3>
+                    <p style="color: #94a3b8;">ลอยและเอียงเมื่อ Hover</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Buttons -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🔘 Advanced Buttons</h2>
+            <p class="section-subtitle">ปุ่มแบบขั้นสูง</p>
+
+            <div class="glass-card" style="padding: 40px; text-align: center;">
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <button class="neon-button">Neon Button</button>
+                    <button class="btn-primary">Gradient Primary</button>
+
+                    <div class="tooltip">
+                        <button class="btn-secondary">Tooltip Button</button>
+                        <span class="tooltip-text">ฉันคือ Tooltip!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Animations -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">⏳ Loading Animations</h2>
+            <p class="section-subtitle">แอนิเมชั่นโหลด</p>
+
+            <div class="demo-grid">
+                <div class="glass-card demo-item"
+                    style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
+                    <h3 class="gradient-text">Spinner</h3>
+                    <div class="spinner"></div>
+                </div>
+
+                <div class="glass-card demo-item"
+                    style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
+                    <h3 class="gradient-text">Pulse Loader</h3>
+                    <div class="pulse-loader">
+                        <div class="pulse-dot"></div>
+                        <div class="pulse-dot"></div>
+                        <div class="pulse-dot"></div>
+                    </div>
+                </div>
+
+                <div class="glass-card demo-item">
+                    <h3 class="gradient-text" style="margin-bottom: 20px;">Skeleton Loader</h3>
+                    <div class="skeleton skeleton-circle" style="margin-bottom: 15px;"></div>
+                    <div class="skeleton skeleton-line" style="width: 100%;"></div>
+                    <div class="skeleton skeleton-line" style="width: 80%;"></div>
+                    <div class="skeleton skeleton-line" style="width: 60%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Bars -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">📊 Progress Bars</h2>
+            <p class="section-subtitle">แถบความคืบหน้า</p>
+
+            <div class="glass-card" style="padding: 40px;">
+                <div style="margin-bottom: 30px;">
+                    <h4 class="gradient-text" style="margin-bottom: 15px;">Static Progress</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;">75%</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 class="gradient-text" style="margin-bottom: 15px;">Animated Progress</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-animated">Loading...</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="gradient-text" style="margin-bottom: 15px;">Multiple Levels</h4>
+                    <div class="progress-bar" style="margin-bottom: 15px;">
+                        <div class="progress-fill" style="width: 90%;">HTML/CSS - 90%</div>
+                    </div>
+                    <div class="progress-bar" style="margin-bottom: 15px;">
+                        <div class="progress-fill"
+                            style="width: 80%; background: linear-gradient(90deg, #3b82f6, #8b5cf6);">JavaScript - 80%
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            style="width: 70%; background: linear-gradient(90deg, #10b981, #14b8a6);">PHP - 70%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toggle Switches -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🎚️ Toggle Switches</h2>
+            <p class="section-subtitle">สวิตช์เปิด-ปิด</p>
+
+            <div class="glass-card" style="padding: 40px;">
+                <div style="display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <p style="color: #94a3b8; margin-top: 10px;">Dark Mode</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <p style="color: #94a3b8; margin-top: 10px;">Notifications</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <p style="color: #94a3b8; margin-top: 10px;">Auto Save</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">📑 Tabs</h2>
+            <p class="section-subtitle">แท็บสลับเนื้อหา</p>
+
+            <div class="glass-card" style="padding: 40px;">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab(event, 'tab1')">Overview</button>
+                    <button class="tab" onclick="switchTab(event, 'tab2')">Features</button>
+                    <button class="tab" onclick="switchTab(event, 'tab3')">Documentation</button>
+                </div>
+
+                <div id="tab1" class="tab-content active">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Overview</h3>
+                    <p style="color: #94a3b8; line-height: 1.8;">
+                        ธีม ME-RMUTR-2026 เป็นธีม WordPress ที่ออกแบบมาเฉพาะสำหรับสาขาวิชาวิศวกรรมเครื่องกล
+                        มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี ด้วยการออกแบบที่ทันสมัย และใช้เทคโนโลยี CSS ขั้นสูง
+                    </p>
+                </div>
+
+                <div id="tab2" class="tab-content">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Features</h3>
+                    <ul style="color: #94a3b8; line-height: 2;">
+                        <li>✨ Glassmorphism Design</li>
+                        <li>🎨 Gradient Colors</li>
+                        <li>🎬 Smooth Animations</li>
+                        <li>📱 Fully Responsive</li>
+                        <li>⚡ Fast Performance</li>
+                    </ul>
+                </div>
+
+                <div id="tab3" class="tab-content">
+                    <h3 class="gradient-text" style="margin-bottom: 15px;">Documentation</h3>
+                    <p style="color: #94a3b8; line-height: 1.8;">
+                        เอกสารประกอบการใช้งานธีม รวมถึงคู่มือการติดตั้ง การปรับแต่ง และการใช้งาน CSS Classes ต่างๆ
+                        สามารถดูได้จากไฟล์ README.md
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">📋 Accordion</h2>
+            <p class="section-subtitle">รายการแบบพับได้</p>
+
+            <div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4 class="gradient-text">What is CSS?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            CSS (Cascading Style Sheets) คือภาษาที่ใช้ในการจัดรูปแบบและออกแบบหน้าเว็บไซต์
+                            ทำให้เว็บไซต์สวยงามและใช้งานง่าย
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4 class="gradient-text">How to use Glassmorphism?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Glassmorphism ใช้ backdrop-filter: blur() ร่วมกับพื้นหลังแบบโปร่งใส
+                            เพื่อสร้างเอฟเฟกต์กระจกแบบโฟกัส
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4 class="gradient-text">Advanced Animations?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            การใช้ @keyframes ร่วมกับ transform, opacity และ filter
+                            สามารถสร้างแอนิเมชั่นที่ซับซ้อนและสวยงามได้
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Effects -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">✍️ Text Effects</h2>
+            <p class="section-subtitle">เอฟเฟกต์ข้อความ</p>
+
+            <div class="demo-grid">
+                <div class="glass-card demo-item" style="text-align: center; padding: 50px 30px;">
+                    <div class="wave-text gradient-text">
+                        <span>W</span>
+                        <span>A</span>
+                        <span>V</span>
+                        <span>E</span>
+                    </div>
+                </div>
+
+                <div class="glass-card demo-item" style="text-align: center; padding: 50px 30px;">
+                    <h3 class="text-reveal gradient-text" style="font-size: 2rem;">
+                        Text Reveal
+                    </h3>
+                </div>
+
+                <div class="glass-card demo-item" style="padding: 30px;">
+                    <div class="typing gradient-text">
+                        Typing Effect...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Example -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🪟 Modal Dialog</h2>
+            <p class="section-subtitle">หน้าต่างป๊อปอัพ</p>
+
+            <div class="glass-card" style="padding: 40px; text-align: center;">
+                <button class="btn-primary" onclick="openModal()">
+                    Open Modal
+                </button>
+            </div>
+        </section>
+
+        <!-- Grid Layout -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">📐 Grid Layouts</h2>
+            <p class="section-subtitle">เลย์เอาต์แบบ Grid</p>
+
+            <div class="grid-showcase">
+                <div class="grid-item-full glass-card" style="padding: 30px; text-align: center;">
+                    <h3 class="gradient-text">Full Width (12 Columns)</h3>
+                </div>
+
+                <div class="grid-item-half glass-card" style="padding: 30px; text-align: center;">
+                    <h4 class="gradient-text">Half (6 Columns)</h4>
+                </div>
+                <div class="grid-item-half glass-card" style="padding: 30px; text-align: center;">
+                    <h4 class="gradient-text">Half (6 Columns)</h4>
+                </div>
+
+                <div class="grid-item-third glass-card" style="padding: 30px; text-align: center;">
+                    <p class="gradient-text">Third (4 Col)</p>
+                </div>
+                <div class="grid-item-third glass-card" style="padding: 30px; text-align: center;">
+                    <p class="gradient-text">Third (4 Col)</p>
+                </div>
+                <div class="grid-item-third glass-card" style="padding: 30px; text-align: center;">
+                    <p class="gradient-text">Third (4 Col)</p>
+                </div>
+
+                <div class="grid-item-quarter glass-card" style="padding: 20px; text-align: center;">
+                    <p class="gradient-text">1/4</p>
+                </div>
+                <div class="grid-item-quarter glass-card" style="padding: 20px; text-align: center;">
+                    <p class="gradient-text">1/4</p>
+                </div>
+                <div class="grid-item-quarter glass-card" style="padding: 20px; text-align: center;">
+                    <p class="gradient-text">1/4</p>
+                </div>
+                <div class="grid-item-quarter glass-card" style="padding: 20px; text-align: center;">
+                    <p class="gradient-text">1/4</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Syntax Highlighting -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">💻 Code Highlighting</h2>
+            <p class="section-subtitle">Code Block พร้อม Syntax Highlighting</p>
+
+            <div class="glass-card" style="padding: 40px;">
+                <div class="code-enhanced">
+                    <span class="code-line"><span class="code-comment">// Function Example</span></span>
+                    <span class="code-line"><span class="code-keyword">function</span> <span
+                            class="code-function">initTheme</span>() {</span>
+                    <span class="code-line"> <span class="code-keyword">const</span> <span
+                            class="code-property">theme</span> = <span
+                            class="code-string">'ME-RMUTR-2026'</span>;</span>
+                    <span class="code-line"> <span class="code-function">console</span>.<span
+                            class="code-function">log</span>(<span class="code-string">'Theme loaded:'</span>,
+                        theme);</span>
+                    <span class="code-line"> <span class="code-keyword">return</span> <span
+                            class="code-property">theme</span>;</span>
+                    <span class="code-line">}</span>
+                    <span class="code-line"></span>
+                    <span class="code-line"><span class="code-comment">// CSS Example</span></span>
+                    <span class="code-line"><span class="code-property">.glass-card</span> {</span>
+                    <span class="code-line"> <span class="code-keyword">background</span>: <span
+                            class="code-function">var</span>(<span class="code-string">--glass-bg</span>);</span>
+                    <span class="code-line"> <span class="code-keyword">backdrop-filter</span>: <span
+                            class="code-function">blur</span>(<span class="code-string">10px</span>);</span>
+                    <span class="code-line">}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Matrix Effect -->
+        <section class="demo-section fade-in">
+            <h2 class="section-title gradient-text">🔢 Special Effects</h2>
+            <p class="section-subtitle">เอฟเฟกต์พิเศษ</p>
+
+            <div class="glass-card" style="padding: 20px;">
+                <div class="matrix-bg" id="matrixBg">
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10;">
+                        <h2 class="gradient-text tech-font" style="font-size: 2.5rem;">MATRIX EFFECT</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 class="gradient-text tech-font" style="margin-bottom: 20px;">Modal Dialog</h2>
+            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 30px;">
+                นี่คือตัวอย่าง Modal Dialog ที่สวยงามด้วย Glassmorphism และ Animation พร้อม Backdrop Blur Effect
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="btn-primary" onclick="closeModal()">ตกลง</button>
+                <button class="btn-secondary" onclick="closeModal()">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="showcase-container" style="text-align: center;">
+            <h3 class="gradient-text tech-font" style="font-size: 2rem; margin-bottom: 15px;">
+                ME-RMUTR-2026
+            </h3>
+            <p style="color: #94a3b8; margin-bottom: 20px;">
+                Advanced CSS Showcase - เทคนิค CSS ขั้นสูง
+            </p>
+            <p style="color: #64748b; font-size: 0.9rem;">
+                Created with ❤️ by T.Benjalersyarnon
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade-in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add visible class to first section immediately
+        const firstSection = document.querySelector('.fade-in');
+        if (firstSection) {
+            firstSection.classList.add('visible');
+        }
+
+        // Parallax Card
+        const parallaxCard = document.getElementById('parallaxCard');
+        if (parallaxCard) {
+            parallaxCard.addEventListener('mousemove', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const moveX = (x - centerX) / 10;
+                const moveY = (y - centerY) / 10;
+
+                const bg = this.querySelector('.parallax-bg');
+                const content = this.querySelector('.parallax-content');
+
+                if (bg && content) {
+                    bg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    content.style.transform = `translate(${-moveX / 2}px, ${-moveY / 2}px)`;
+                }
+            });
+
+            parallaxCard.addEventListener('mouseleave', function () {
+                const bg = this.querySelector('.parallax-bg');
+                const content = this.querySelector('.parallax-content');
+                if (bg && content) {
+                    bg.style.transform = 'translate(0, 0)';
+                    content.style.transform = 'translate(0, 0)';
+                }
+            });
+        }
+
+        // Tab Switching
+        function switchTab(event, tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            const tabContent = document.getElementById(tabId);
+            if (tabContent) {
+                tabContent.classList.add('active');
+            }
+        }
+
+        // Accordion
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = item.classList.contains('active');
+
+            // Close all accordions
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+                const accContent = acc.querySelector('.accordion-content');
+                if (accContent) {
+                    accContent.style.maxHeight = null;
+                }
+            });
+
+            // Open clicked accordion if it wasn't active
+            if (!isActive && content) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
+        // Modal
+        function openModal() {
+            const modal = document.getElementById('modalOverlay');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Close modal on overlay click
+        const modalOverlay = document.getElementById('modalOverlay');
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Matrix Effect
+        const matrixBg = document.getElementById('matrixBg');
+        if (matrixBg) {
+            const chars = '01アイウエオカキクケコサシスセソタチツテト';
+
+            function createMatrixText() {
+                const text = document.createElement('div');
+                text.className = 'matrix-text';
+                text.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+                text.style.left = Math.random() * 100 + '%';
+                text.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                text.style.animationDelay = Math.random() * 5 + 's';
+                matrixBg.appendChild(text);
+
+                setTimeout(() => text.remove(), 15000);
+            }
+
+            // Create matrix effect
+            setInterval(createMatrixText, 200);
+
+            // Initial matrix texts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createMatrixText, i * 100);
+            }
+        }
+    </script>
+</body>
+
+</html>
