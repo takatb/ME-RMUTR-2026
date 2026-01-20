@@ -1,570 +1,222 @@
-/*
-Theme Name: ME-RMUTR-2026
-Theme URI: http://tactics.thddns.net:3930/WordPress
-Author: T.Benjalersyarnon
-Author URI: https://github.com/takatb
-Description: ธีม WordPress สำหรับสาขาวิชาวิศวกรรมเครื่องกล RMUTR
-Version: 1.0.2
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: ME-RMUTR-2026-theme
-Tags: dark, modern, one-page, custom-menu, featured-images
-*/
-
-/* ME-RMUTR-2026 - Custom Styles */
-
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
-
-/* Root Variables */
-:root {
-    --primary-dark: #1a0a0a;
-    --primary-red: #991b1b;
-    --accent-red: #ef4444;
-    --accent-orange: #f97316;
-    --accent-rose: #f43f5e;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-}
-
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Noto Sans Thai', sans-serif;
-    background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
-    color: #e2e8f0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* Tech Font for English Headers */
-.tech-font {
-    font-family: 'Orbitron', sans-serif;
-}
-
-/* Glassmorphism Card */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-}
-
-/* Gradient Text */
-.gradient-text {
-    background: linear-gradient(135deg, #ef4444, #f97316, #f43f5e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Animated Background Particles */
-.particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(239, 68, 68, 0.5);
-    border-radius: 50%;
-    animation: float 15s infinite;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-100vh) rotate(720deg);
-        opacity: 0;
-    }
-}
-
-/* Glow Effects */
-.glow {
-    box-shadow: 0 0 30px rgba(239, 68, 68, 0.3),
-        0 0 60px rgba(249, 115, 22, 0.2);
-}
-
-.glow-text {
-    text-shadow: 0 0 20px rgba(239, 68, 68, 0.5),
-        0 0 40px rgba(249, 115, 22, 0.3);
-}
-
-/* Button Styles */
-.btn-primary {
-    background: linear-gradient(135deg, #ef4444, #991b1b);
-    color: white;
-    padding: 12px 32px;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: #f97316;
-    padding: 12px 32px;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid #f97316;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-secondary:hover {
-    background: rgba(249, 115, 22, 0.1);
-    transform: translateY(-2px);
-}
-
-/* Navigation */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.nav-link {
-    position: relative;
-    color: #e2e8f0;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #ef4444, #f97316);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #f97316;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-	z-index: 1;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 15 L54 15 L56 22 C58 22.5 60 23.5 62 25 L68 22 L71 25 L68 31 C69.5 33 70.5 35 71 37 L78 39 L78 43 L71 45 C70.5 47 69.5 49 68 51 L71 57 L68 60 L62 57 C60 58.5 58 59.5 56 60 L54 67 L50 67 L48 60 C46 59.5 44 58.5 42 57 L36 60 L33 57 L36 51 C34.5 49 33.5 47 33 45 L26 43 L26 39 L33 37 C33.5 35 34.5 33 36 31 L33 25 L36 22 L42 25 C44 23.5 46 22.5 48 22 L50 15 Z M52 35 A10 10 0 1 0 52 55 A10 10 0 1 0 52 35" stroke="%23ef4444" stroke-width="0.5" fill="none" opacity="0.2"/></svg>') repeat;
-    background-size: 100px 100px;
-    animation: moveBg 20s linear infinite;	
-	z-index: 0; /* หรือ 1 เพื่อให้แน่ใจว่ามันอยู่เหนือพื้นหลังสีดำ */
-    pointer-events: none; /* เพื่อไม่ให้ขวางการคลิกปุ่มต่างๆ */
-}
-
-@keyframes moveBg {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 100px 100px;
-    }
-}
-
-.robot-icon {
-    width: 200px;
-    height: 200px;
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Section Styles */
-section {
-    padding: 100px 0;
-    position: relative;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    color: #94a3b8;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-}
-
-/* Research Cards */
-.research-card {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
-}
-
-.research-card:hover {
-    transform: translateY(-10px);
-}
-
-.research-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.research-card:hover::before {
-    left: 100%;
-}
-
-/* Team Cards */
-.team-card {
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
-}
-
-.team-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    border: 4px solid transparent;
-    background: linear-gradient(var(--primary-dark), var(--primary-dark)) padding-box,
-        linear-gradient(135deg, #ef4444, #f97316) border-box;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #ef4444;
-}
-
-/* Tools Section */
-.tool-card {
-    transition: all 0.3s ease;
-}
-
-.tool-card:hover {
-    transform: scale(1.02);
-    border-color: rgba(239, 68, 68, 0.5);
-}
-
-.tool-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(249, 115, 22, 0.2));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Footer */
-.footer {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 60px 0 30px;
-}
-
-.social-link {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #e2e8f0;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.social-link:hover {
-    background: linear-gradient(135deg, #ef4444, #f97316);
-    transform: translateY(-3px);
-}
-
-/* Mobile Menu */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 1001;
-    transition: right 0.3s ease;
-    padding: 80px 30px;
-}
-
-.mobile-menu.active {
-    right: 0;
-}
-
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Scroll Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stats Counter */
-.stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #ef4444, #f97316);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #ef4444, #f97316);
-    border-radius: 4px;
-}
-
-/* Popup Modal */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.popup-container {
-    position: relative;
-    max-width: 500px;
-    width: 90%;
-    padding: 40px;
-    text-align: center;
-    transform: scale(0.8) translateY(20px);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.popup-overlay.active .popup-container {
-    transform: scale(1) translateY(0);
-}
-
-.popup-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    color: #e2e8f0;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-close:hover {
-    background: rgba(239, 68, 68, 0.5);
-    transform: rotate(90deg);
-}
-
-.popup-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(249, 115, 22, 0.2));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #ef4444;
-}
-
-.popup-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.popup-text {
-    color: #e2e8f0;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-.popup-divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #ef4444, #f97316);
-    margin: 20px auto;
-    border-radius: 2px;
-}
-
-.popup-subtext {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    margin-bottom: 25px;
-}
-
-.popup-btn {
-    display: inline-block;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem !important;
-    }
-
-    section {
-        padding: 60px 0;
-    }
-}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME-RMUTR-2026 Color Palette</title>
+    
+    <!-- Import Fonts from your CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for Layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* นำเข้า Style บางส่วนจากโค้ดของคุณเพื่อให้ Mood & Tone ตรงกัน */
+        :root {
+            --primary-dark: #1a0a0a;
+            --primary-red: #991b1b;
+            --accent-red: #ef4444;
+            --accent-orange: #f97316;
+            --accent-rose: #f43f5e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .tech-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .color-swatch {
+            height: 120px;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+        }
+
+        /* Pattern overlay for transparent colors */
+        .checkered {
+            background-image: 
+                linear-gradient(45deg, #2a2a2a 25%, transparent 25%), 
+                linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #2a2a2a 75%), 
+                linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            border: 1px solid var(--accent-orange);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 tech-font text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-rose-500">
+                ME-RMUTR 2026
+            </h1>
+            <p class="text-slate-400 text-xl">Theme Color Palette</p>
+            <p class="text-slate-500 text-sm mt-2">Click on any card to copy the code</p>
+        </header>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6" id="colorGrid">
+            <!-- Items will be injected here via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        // Data derived specifically from the provided CSS snippet
+        const colors = [
+            // Core Variables
+            { name: "--primary-dark", code: "#1a0a0a", label: "Primary Dark" },
+            { name: "--primary-red", code: "#991b1b", label: "Primary Red" },
+            { name: "--accent-red", code: "#ef4444", label: "Accent Red" },
+            { name: "--accent-orange", code: "#f97316", label: "Accent Orange" },
+            { name: "--accent-rose", code: "#f43f5e", label: "Accent Rose" },
+            
+            // Backgrounds & Gradients
+            { name: "Bg Gradient Mid", code: "#2d1515", label: "Body Gradient Center" },
+            { name: "Navbar / Slate", code: "#0f172a", label: "Navbar & Scrollbar" },
+            { name: "Glass BG", code: "rgba(255, 255, 255, 0.05)", label: "Glass Effect Base" },
+            { name: "Glass Border", code: "rgba(255, 255, 255, 0.1)", label: "Glass Border" },
+            
+            // Typography
+            { name: "Text Main", code: "#e2e8f0", label: "Primary Text" },
+            { name: "Text Muted", code: "#94a3b8", label: "Subtitle Text" },
+            
+            // Effects & Shadows
+            { name: "Particle", code: "rgba(239, 68, 68, 0.5)", label: "Floating Particles" },
+            { name: "Glow Red", code: "rgba(239, 68, 68, 0.3)", label: "Red Glow Shadow" },
+            { name: "Glow Orange", code: "rgba(249, 115, 22, 0.2)", label: "Orange Glow Shadow" },
+            
+            // UI Components
+            { name: "Overlay Black", code: "rgba(0, 0, 0, 0.3)", label: "Footer Overlay" },
+            { name: "Menu Overlay", code: "rgba(15, 23, 42, 0.98)", label: "Mobile Menu Bg" },
+            { name: "Popup Overlay", code: "rgba(0, 0, 0, 0.7)", label: "Modal Backdrop" },
+            
+            // Derived Tints (Common in Tailwind themes like this)
+            { name: "Hover Orange", code: "rgba(249, 115, 22, 0.1)", label: "Button Hover" },
+            { name: "White 10%", code: "rgba(255, 255, 255, 0.1)", label: "Popup Close Bg" },
+            { name: "White 20%", code: "rgba(255, 255, 255, 0.2)", label: "Border Highlight" }
+        ];
+
+        const grid = document.getElementById('colorGrid');
+        const toast = document.getElementById('toast');
+
+        colors.forEach(color => {
+            const isRgba = color.code.startsWith('rgba');
+            
+            const card = document.createElement('div');
+            card.className = 'glass-card overflow-hidden cursor-pointer group';
+            card.onclick = () => copyToClipboard(color.code, color.name);
+
+            // Swatch Container
+            const swatchContainer = document.createElement('div');
+            swatchContainer.className = `color-swatch flex items-center justify-center ${isRgba ? 'checkered' : ''}`;
+
+            // The Color Itself
+            const colorDiv = document.createElement('div');
+            colorDiv.style.backgroundColor = color.code;
+            colorDiv.className = "w-full h-full absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110";
+            
+            swatchContainer.appendChild(colorDiv);
+
+            // Content Container
+            const content = document.createElement('div');
+            content.className = 'p-4';
+
+            // Variable Name
+            const name = document.createElement('div');
+            name.className = 'font-mono text-sm text-orange-400 mb-1 truncate';
+            name.innerText = color.name;
+
+            // Hex/RGBA Code
+            const code = document.createElement('div');
+            code.className = 'font-bold text-gray-200 text-lg tech-font truncate mb-1';
+            code.innerText = color.code;
+
+            // Description Label
+            const label = document.createElement('div');
+            label.className = 'text-xs text-gray-500 uppercase tracking-wider';
+            label.innerText = color.label;
+
+            content.appendChild(name);
+            content.appendChild(code);
+            content.appendChild(label);
+
+            card.appendChild(swatchContainer);
+            card.appendChild(content);
+
+            grid.appendChild(card);
+        });
+
+        function copyToClipboard(text, name) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`Copied ${name}: ${text}`);
+        }
+
+        function showToast(message) {
+            toast.innerText = message;
+            toast.className = "toast show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
+</body>
+</html>
