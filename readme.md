@@ -1,6 +1,6 @@
 # ME-RMUTR-2026 WORDPRESS THEME
 - Theme Name: ME-RMUTR-2026
-- Theme URI: http://tactics.thddns.net:3930/WordPress
+- Theme URI: https://en.rmutr.ac.th/mee/
 - Author: T.Benjalersyarnon
 - Author URI: https://github.com/takatb
 - Description: ธีม WordPress สำหรับสาขาวิชาวิศวกรรมเครื่องกล RMUTR
