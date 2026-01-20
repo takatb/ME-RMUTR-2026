@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME-RMUTR Icon Library</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Free -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            /* Theme Variables from ME-RMUTR-2026 */
+            --primary-dark: #1a0a0a;
+            --primary-red: #991b1b;
+            --accent-red: #ef4444;
+            --accent-orange: #f97316;
+            --accent-rose: #f43f5e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .tech-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-red), var(--accent-orange));
+            border-radius: 4px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background: rgba(20, 20, 20, 0.95);
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 12px 24px;
+            position: fixed;
+            z-index: 100;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid var(--accent-orange);
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+
+        /* Tab Buttons */
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Glow Text */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        
+        /* Background Particles */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <header class="glass-panel sticky top-0 z-50 border-b-0 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-700 to-orange-500 flex items-center justify-center text-white text-2xl shadow-lg shadow-orange-900/50">
+                        <i class="fa-solid fa-icons"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold tech-font tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-rose-400">
+                            ICON LIBRARY
+                        </h1>
+                        <p class="text-xs text-slate-400 tracking-wider">ME-RMUTR-2026 EDITION</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <div class="relative w-full sm:w-64">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500"></i>
+                        <input type="text" id="searchInput" placeholder="Search icons..." 
+                            class="w-full bg-black/40 border border-white/10 text-sm rounded-full focus:ring-2 focus:ring-orange-500 focus:border-transparent block pl-10 p-2.5 text-white placeholder-slate-500 transition-all">
+                    </div>
+                    
+                    <div class="flex rounded-full bg-black/40 p-1 border border-white/10">
+                        <button onclick="switchTab('html')" id="btn-html"
+                            class="tab-btn active px-6 py-2 text-sm font-medium rounded-full flex-1 whitespace-nowrap">
+                            HTML Entities
+                        </button>
+                        <button onclick="switchTab('fa')" id="btn-fa"
+                            class="tab-btn px-6 py-2 text-sm font-medium rounded-full flex-1 whitespace-nowrap">
+                            Font Awesome
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6 md:p-10 max-w-[1600px] mx-auto w-full relative z-10">
+        
+        <!-- Stats -->
+        <div class="mb-8 flex items-center justify-between glass-panel px-6 py-3 rounded-xl border-l-4 border-l-orange-500">
+            <div class="flex gap-6 text-sm tech-font">
+                <span class="text-slate-300">HTML: <span id="count-html" class="text-orange-400 font-bold glow-text">0</span></span>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-300">FontAwesome: <span id="count-fa" class="text-orange-400 font-bold glow-text">0</span></span>
+            </div>
+            <div class="text-xs text-slate-500 hidden sm:block">
+                <i class="fa-regular fa-hand-pointer mr-1"></i> Click card to copy code
+            </div>
+        </div>
+
+        <!-- HTML Tab -->
+        <div id="html-section" class="space-y-12 animate-fade"></div>
+
+        <!-- Font Awesome Tab -->
+        <div id="fa-section" class="hidden space-y-12 animate-fade"></div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-32 text-slate-600">
+            <i class="fa-solid fa-magnifying-glass-location text-6xl mb-4 opacity-50"></i>
+            <p class="text-xl font-medium tech-font">NO ICONS FOUND</p>
+        </div>
+
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check text-green-400"></i>
+        <span id="toast-msg">Copied to clipboard</span>
+    </div>
+
+    <!-- Scroll Top -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+        class="fixed bottom-8 right-8 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white w-12 h-12 rounded-full shadow-lg shadow-orange-900/50 flex items-center justify-center transition-all hover:-translate-y-1 z-40 border border-white/20">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // --- DATA: HTML Entities (250+) ---
+        const htmlData = [
+            {
+                title: "Arrows & Directions (ลูกศร)",
+                items: [
+                    {c:'&larr;', l:'Left'}, {c:'&rarr;', l:'Right'}, {c:'&uarr;', l:'Up'}, {c:'&darr;', l:'Down'},
+                    {c:'&harr;', l:'L-R'}, {c:'&varr;', l:'U-D'}, {c:'&nwarr;', l:'NW'}, {c:'&nearr;', l:'NE'},
+                    {c:'&searr;', l:'SE'}, {c:'&swarr;', l:'SW'}, {c:'&#8634;', l:'CW'}, {c:'&#8635;', l:'CCW'},
+                    {c:'&lArr;', l:'L Dbl'}, {c:'&rArr;', l:'R Dbl'}, {c:'&uArr;', l:'U Dbl'}, {c:'&dArr;', l:'D Dbl'},
+                    {c:'&hArr;', l:'LR Dbl'}, {c:'&vArr;', l:'UD Dbl'}, {c:'&#10132;', l:'Bold R'}, {c:'&#10148;', l:'Point'},
+                    {c:'&#8679;', l:'White U'}, {c:'&#8681;', l:'White D'}, {c:'&#8678;', l:'White L'}, {c:'&#8680;', l:'White R'},
+                    {c:'&#8629;', l:'Ret'}, {c:'&#8677;', l:'Tab'}, {c:'&#8644;', l:'Equil'}, {c:'&#8652;', l:'Zigzag'},
+                    {c:'&#10140;', l:'Long R'}, {c:'&#8605;', l:'L Squig'}, {c:'&#8608;', l:'R Squig'}, {c:'&#8617;', l:'L Hook'},
+                    {c:'&#8618;', l:'R Hook'}, {c:'&#8666;', l:'L Map'}, {c:'&#8667;', l:'R Map'}, {c:'&#8669;', l:'Squig'}
+                ]
+            },
+            {
+                title: "Shapes & Symbols (รูปทรง)",
+                items: [
+                    {c:'&#9733;', l:'Star'}, {c:'&#9734;', l:'Star O'}, {c:'&#9829;', l:'Heart'}, {c:'&#9825;', l:'Heart O'},
+                    {c:'&#9679;', l:'Circ'}, {c:'&#9675;', l:'Circ O'}, {c:'&#9632;', l:'Sq'}, {c:'&#9633;', l:'Sq O'},
+                    {c:'&#9650;', l:'Tri U'}, {c:'&#9660;', l:'Tri D'}, {c:'&#9668;', l:'Tri L'}, {c:'&#9658;', l:'Tri R'},
+                    {c:'&#9642;', l:'Sm Sq'}, {c:'&#9643;', l:'Sm Rec'}, {c:'&#9724;', l:'Bg Sq'}, {c:'&#9711;', l:'Bg Circ'},
+                    {c:'&#9830;', l:'Diamond'}, {c:'&#9824;', l:'Spade'}, {c:'&#9827;', l:'Club'}, {c:'&#9670;', l:'Lozenge'},
+                    {c:'&#9728;', l:'Sun'}, {c:'&#9729;', l:'Cloud'}, {c:'&#9730;', l:'Umb'}, {c:'&#9731;', l:'Snow'},
+                    {c:'&#9742;', l:'Phone'}, {c:'&#9990;', l:'Phone2'}, {c:'&#9993;', l:'Mail'}, {c:'&#9998;', l:'Pencil'},
+                    {c:'&#9745;', l:'Chkd'}, {c:'&#9746;', l:'X Box'}, {c:'&#10004;', l:'Check'}, {c:'&#10006;', l:'Cross'},
+                    {c:'&#9760;', l:'Skull'}, {c:'&#9762;', l:'Radio'}, {c:'&#9763;', l:'Bio'}, {c:'&#9774;', l:'Peace'},
+                    {c:'&#9775;', l:'YinYang'}, {c:'&#9851;', l:'Recyc'}, {c:'&#9855;', l:'Wheel'}, {c:'&#9875;', l:'Anchor'},
+                    {c:'&#9888;', l:'Warn'}, {c:'&#9889;', l:'Volt'}, {c:'&#9986;', l:'Cut'}, {c:'&#9992;', l:'Plane'},
+                    {c:'&#9996;', l:'Win'}, {c:'&#9997;', l:'Write'}, {c:'&#10071;', l:'Excl'}, {c:'&#10067;', l:'Ques'},
+                    {c:'&#9792;', l:'Fem'}, {c:'&#9794;', l:'Male'}, {c:'&#9890;', l:'Neut'}, {c:'&#9891;', l:'Trans'},
+                    {c:'&#9835;', l:'Music'}, {c:'&#9834;', l:'Note'}, {c:'&#9749;', l:'Coffee'}, {c:'&#9832;', l:'Hot'},
+                    {c:'&#128512;', l:'Grin'}, {c:'&#128514;', l:'Joy'}, {c:'&#128525;', l:'Love'}, {c:'&#128169;', l:'Poo'}
+                ]
+            },
+            {
+                title: "Math & Logic (คณิตศาสตร์)",
+                items: [
+                    {c:'&times;', l:'Times'}, {c:'&divide;', l:'Divide'}, {c:'&plusmn;', l:'PlusMin'}, {c:'&infin;', l:'Infin'},
+                    {c:'&ne;', l:'NotEq'}, {c:'&le;', l:'LessEq'}, {c:'&ge;', l:'MoreEq'}, {c:'&asymp;', l:'Approx'},
+                    {c:'&equiv;', l:'Equiv'}, {c:'&cong;', l:'Cong'}, {c:'&sim;', l:'Sim'}, {c:'&prop;', l:'Prop'},
+                    {c:'&sum;', l:'Sum'}, {c:'&prod;', l:'Prod'}, {c:'&pi;', l:'Pi'}, {c:'&int;', l:'Int'},
+                    {c:'&radic;', l:'Root'}, {c:'&#8731;', l:'CubeRt'}, {c:'&#8732;', l:'4thRt'}, {c:'&part;', l:'Part'},
+                    {c:'&nabla;', l:'Nabla'}, {c:'&exist;', l:'Exist'}, {c:'&nexist;', l:'NotEx'}, {c:'&empty;', l:'Empty'},
+                    {c:'&isin;', l:'In'}, {c:'&notin;', l:'NotIn'}, {c:'&cup;', l:'Union'}, {c:'&cap;', l:'Inters'},
+                    {c:'&sub;', l:'Sub'}, {c:'&sup;', l:'Sup'}, {c:'&nsub;', l:'NotSub'}, {c:'&forall;', l:'All'},
+                    {c:'&there4;', l:'Theref'}, {c:'&because;', l:'Cuz'}, {c:'&ang;', l:'Angle'}, {c:'&perp;', l:'Perp'},
+                    {c:'&deg;', l:'Deg'}, {c:'&prime;', l:'Prime'}, {c:'&Prime;', l:'DPrime'}, {c:'&lowast;', l:'Ast'},
+                    {c:'&#188;', l:'1/4'}, {c:'&#189;', l:'1/2'}, {c:'&#190;', l:'3/4'}, {c:'&#8531;', l:'1/3'},
+                    {c:'&#8532;', l:'2/3'}, {c:'&#8533;', l:'1/5'}, {c:'&#8534;', l:'2/5'}, {c:'&#8535;', l:'3/5'},
+                    {c:'&#8704;', l:'Forall'}, {c:'&#8706;', l:'Part'}, {c:'&#8707;', l:'Exist'}, {c:'&#8709;', l:'Empty'}
+                ]
+            },
+            {
+                title: "Currency & Units (สกุลเงิน)",
+                items: [
+                    {c:'&cent;', l:'Cent'}, {c:'&pound;', l:'Pound'}, {c:'&yen;', l:'Yen'}, {c:'&euro;', l:'Euro'},
+                    {c:'&#3647;', l:'Baht'}, {c:'&#8361;', l:'Won'}, {c:'&#8377;', l:'Rupee'}, {c:'&#8362;', l:'Sheqel'},
+                    {c:'&#8363;', l:'Dong'}, {c:'&#8364;', l:'Euro'}, {c:'&#8369;', l:'Peso'}, {c:'&#8366;', l:'Tugrik'},
+                    {c:'&#8352;', l:'Lira'}, {c:'&#8353;', l:'Aus'}, {c:'&#8354;', l:'Hryv'}, {c:'&#8355;', l:'Franc'},
+                    {c:'&#8371;', l:'Ruble'}, {c:'&#8373;', l:'Cedi'}, {c:'&#8359;', l:'Colon'}, {c:'&#8356;', l:'Cedi'},
+                    {c:'$', l:'Dollar'}, {c:'&curren;', l:'Gen'}, {c:'&#8367;', l:'Drach'}, {c:'&#8368;', l:'Germ'},
+                    {c:'&#8451;', l:'Celsius'}, {c:'&#8457;', l:'Fahr'}, {c:'&#8486;', l:'Ohm'}, {c:'&#8491;', l:'Angst'}
+                ]
+            },
+            {
+                title: "Greek Alphabet (อักษรกรีก)",
+                items: [
+                    {c:'&alpha;', l:'alpha'}, {c:'&beta;', l:'beta'}, {c:'&gamma;', l:'gamma'}, {c:'&delta;', l:'delta'},
+                    {c:'&epsilon;', l:'epsi'}, {c:'&zeta;', l:'zeta'}, {c:'&eta;', l:'eta'}, {c:'&theta;', l:'theta'},
+                    {c:'&iota;', l:'iota'}, {c:'&kappa;', l:'kappa'}, {c:'&lambda;', l:'lamb'}, {c:'&mu;', l:'mu'},
+                    {c:'&nu;', l:'nu'}, {c:'&xi;', l:'xi'}, {c:'&omicron;', l:'omic'}, {c:'&pi;', l:'pi'},
+                    {c:'&rho;', l:'rho'}, {c:'&sigma;', l:'sigma'}, {c:'&tau;', l:'tau'}, {c:'&upsilon;', l:'upsi'},
+                    {c:'&phi;', l:'phi'}, {c:'&chi;', l:'chi'}, {c:'&psi;', l:'psi'}, {c:'&omega;', l:'omega'},
+                    {c:'&Alpha;', l:'Alpha'}, {c:'&Beta;', l:'Beta'}, {c:'&Gamma;', l:'Gamma'}, {c:'&Delta;', l:'Delta'},
+                    {c:'&Theta;', l:'Theta'}, {c:'&Lambda;', l:'Lamb'}, {c:'&Sigma;', l:'Sigma'}, {c:'&Phi;', l:'Phi'},
+                    {c:'&Psi;', l:'Psi'}, {c:'&Omega;', l:'Omega'}
+                ]
+            },
+             {
+                title: "Chess & Cards (หมากรุก/ไพ่)",
+                items: [
+                    {c:'&#9812;', l:'K W'}, {c:'&#9813;', l:'Q W'}, {c:'&#9814;', l:'R W'}, {c:'&#9815;', l:'B W'},
+                    {c:'&#9816;', l:'N W'}, {c:'&#9817;', l:'P W'}, {c:'&#9818;', l:'K B'}, {c:'&#9819;', l:'Q B'},
+                    {c:'&#9820;', l:'R B'}, {c:'&#9821;', l:'B B'}, {c:'&#9822;', l:'N B'}, {c:'&#9823;', l:'P B'},
+                    {c:'&#127137;', l:'Ace S'}, {c:'&#127153;', l:'Ace H'}, {c:'&#127169;', l:'Ace D'}, {c:'&#127185;', l:'Ace C'}
+                ]
+            },
+            {
+                title: "Punctuation (เครื่องหมายวรรคตอน)",
+                items: [
+                     {c:'&copy;', l:'Copy'}, {c:'&reg;', l:'Reg'}, {c:'&trade;', l:'TM'}, {c:'&amp;', l:'Amp'},
+                    {c:'&lt;', l:'Lt'}, {c:'&gt;', l:'Gt'}, {c:'&quot;', l:'Quot'}, {c:'&apos;', l:'Apos'},
+                    {c:'&sect;', l:'Sect'}, {c:'&para;', l:'Para'}, {c:'&dagger;', l:'Dag'}, {c:'&Dagger;', l:'DDag'},
+                    {c:'&bull;', l:'Bull'}, {c:'&middot;', l:'Mid'}, {c:'&hellip;', l:'Elip'}, {c:'&iquest;', l:'Inv?'},
+                    {c:'&iexcl;', l:'Inv!'}, {c:'&laquo;', l:'LAng'}, {c:'&raquo;', l:'RAng'}, {c:'&lsaquo;', l:'LSng'},
+                    {c:'&rsaquo;', l:'RSng'}, {c:'&#8211;', l:'NDash'}, {c:'&#8212;', l:'MDash'}, {c:'&#8216;', l:'Op\''},
+                    {c:'&#8217;', l:'Cl\''}, {c:'&#8220;', l:'Op"'}, {c:'&#8221;', l:'Cl"'}, {c:'&#8226;', l:'Bull'},
+                    {c:'&#8984;', l:'Cmd'}, {c:'&#8997;', l:'Opt'}, {c:'&#9003;', l:'Del'}, {c:'&#8679;', l:'Shift'}
+                ]
+            }
+        ];
+
+        // --- DATA: Font Awesome (250+) ---
+        const faData = [
+            {
+                title: "UI & Navigation (อินเตอร์เฟซ)",
+                items: [
+                    {c:'fa-solid fa-house', t:'Home'}, {c:'fa-solid fa-magnifying-glass', t:'Search'},
+                    {c:'fa-solid fa-bars', t:'Menu'}, {c:'fa-solid fa-xmark', t:'Close'},
+                    {c:'fa-solid fa-check', t:'Check'}, {c:'fa-solid fa-user', t:'User'},
+                    {c:'fa-solid fa-gear', t:'Gear'}, {c:'fa-solid fa-bell', t:'Bell'},
+                    {c:'fa-solid fa-envelope', t:'Mail'}, {c:'fa-solid fa-arrow-right', t:'Right'},
+                    {c:'fa-solid fa-arrow-left', t:'Left'}, {c:'fa-solid fa-arrow-up', t:'Up'},
+                    {c:'fa-solid fa-arrow-down', t:'Down'}, {c:'fa-solid fa-chevron-right', t:'Chev R'},
+                    {c:'fa-solid fa-chevron-left', t:'Chev L'}, {c:'fa-solid fa-chevron-down', t:'Chev D'},
+                    {c:'fa-solid fa-chevron-up', t:'Chev U'}, {c:'fa-solid fa-caret-down', t:'Caret D'},
+                    {c:'fa-solid fa-plus', t:'Plus'}, {c:'fa-solid fa-minus', t:'Minus'},
+                    {c:'fa-solid fa-trash', t:'Trash'}, {c:'fa-solid fa-pen', t:'Pen'},
+                    {c:'fa-solid fa-lock', t:'Lock'}, {c:'fa-solid fa-unlock', t:'Unlock'},
+                    {c:'fa-solid fa-eye', t:'Eye'}, {c:'fa-solid fa-eye-slash', t:'NoEye'},
+                    {c:'fa-solid fa-share', t:'Share'}, {c:'fa-solid fa-download', t:'Load'},
+                    {c:'fa-solid fa-upload', t:'Upload'}, {c:'fa-solid fa-filter', t:'Filter'},
+                    {c:'fa-solid fa-sort', t:'Sort'}, {c:'fa-solid fa-calendar', t:'Date'},
+                    {c:'fa-solid fa-clock', t:'Clock'}, {c:'fa-solid fa-location-dot', t:'Map'},
+                    {c:'fa-solid fa-circle-info', t:'Info'}, {c:'fa-solid fa-circle-exclamation', t:'Warn'},
+                    {c:'fa-solid fa-circle-check', t:'Ok'}, {c:'fa-solid fa-circle-xmark', t:'Err'},
+                    {c:'fa-solid fa-ellipsis', t:'More'}, {c:'fa-solid fa-list', t:'List'},
+                    {c:'fa-solid fa-th', t:'Grid'}, {c:'fa-solid fa-rotate-right', t:'Redo'}
+                ]
+            },
+            {
+                title: "Development & Tech (เทคโนโลยี)",
+                items: [
+                    {c:'fa-solid fa-code', t:'Code'}, {c:'fa-solid fa-terminal', t:'Term'},
+                    {c:'fa-solid fa-bug', t:'Bug'}, {c:'fa-solid fa-code-branch', t:'Git'},
+                    {c:'fa-solid fa-database', t:'DB'}, {c:'fa-solid fa-server', t:'Server'},
+                    {c:'fa-solid fa-microchip', t:'Chip'}, {c:'fa-solid fa-memory', t:'RAM'},
+                    {c:'fa-solid fa-hard-drive', t:'HDD'}, {c:'fa-solid fa-network-wired', t:'Net'},
+                    {c:'fa-solid fa-wifi', t:'Wifi'}, {c:'fa-solid fa-signal', t:'Signal'},
+                    {c:'fa-solid fa-battery-full', t:'Bat'}, {c:'fa-solid fa-plug', t:'Plug'},
+                    {c:'fa-solid fa-power-off', t:'Power'}, {c:'fa-solid fa-laptop', t:'Laptop'},
+                    {c:'fa-solid fa-desktop', t:'PC'}, {c:'fa-solid fa-mobile', t:'Phone'},
+                    {c:'fa-solid fa-keyboard', t:'Keybd'}, {c:'fa-solid fa-mouse', t:'Mouse'},
+                    {c:'fa-brands fa-html5', t:'HTML5'}, {c:'fa-brands fa-css3', t:'CSS3'},
+                    {c:'fa-brands fa-js', t:'JS'}, {c:'fa-brands fa-react', t:'React'},
+                    {c:'fa-brands fa-vuejs', t:'Vue'}, {c:'fa-brands fa-angular', t:'Ang'},
+                    {c:'fa-brands fa-node', t:'Node'}, {c:'fa-brands fa-python', t:'Py'},
+                    {c:'fa-brands fa-java', t:'Java'}, {c:'fa-brands fa-php', t:'PHP'},
+                    {c:'fa-brands fa-docker', t:'Dock'}, {c:'fa-brands fa-aws', t:'AWS'},
+                    {c:'fa-brands fa-linux', t:'Linux'}, {c:'fa-brands fa-github', t:'GitH'}
+                ]
+            },
+            {
+                title: "Business & Finance (ธุรกิจ)",
+                items: [
+                    {c:'fa-solid fa-briefcase', t:'Work'}, {c:'fa-solid fa-building', t:'Build'},
+                    {c:'fa-solid fa-chart-line', t:'Graph'}, {c:'fa-solid fa-chart-pie', t:'Pie'},
+                    {c:'fa-solid fa-chart-bar', t:'Bar'}, {c:'fa-solid fa-coins', t:'Coin'},
+                    {c:'fa-solid fa-credit-card', t:'Card'}, {c:'fa-solid fa-money-bill', t:'Bill'},
+                    {c:'fa-solid fa-wallet', t:'Wallet'}, {c:'fa-solid fa-piggy-bank', t:'Save'},
+                    {c:'fa-solid fa-cart-shopping', t:'Cart'}, {c:'fa-solid fa-shop', t:'Shop'},
+                    {c:'fa-solid fa-basket-shopping', t:'Bask'}, {c:'fa-solid fa-tag', t:'Tag'},
+                    {c:'fa-solid fa-tags', t:'Tags'}, {c:'fa-solid fa-percent', t:'%'},
+                    {c:'fa-solid fa-receipt', t:'Recpt'}, {c:'fa-solid fa-bullhorn', t:'Ad'},
+                    {c:'fa-solid fa-handshake', t:'Deal'}, {c:'fa-solid fa-users', t:'Users'},
+                    {c:'fa-solid fa-user-tie', t:'Boss'}, {c:'fa-solid fa-id-card', t:'ID'},
+                    {c:'fa-solid fa-calculator', t:'Calc'}, {c:'fa-solid fa-file-invoice', t:'Inv'},
+                    {c:'fa-solid fa-sack-dollar', t:'Rich'}, {c:'fa-solid fa-box', t:'Box'}
+                ]
+            },
+            {
+                title: "Files & Text (เอกสาร)",
+                items: [
+                    {c:'fa-solid fa-file', t:'File'}, {c:'fa-solid fa-file-lines', t:'Txt'},
+                    {c:'fa-solid fa-file-pdf', t:'PDF'}, {c:'fa-solid fa-file-word', t:'Word'},
+                    {c:'fa-solid fa-file-excel', t:'Excel'}, {c:'fa-solid fa-file-image', t:'Img'},
+                    {c:'fa-solid fa-file-audio', t:'Aud'}, {c:'fa-solid fa-file-video', t:'Vid'},
+                    {c:'fa-solid fa-file-zipper', t:'Zip'}, {c:'fa-solid fa-folder', t:'Fold'},
+                    {c:'fa-solid fa-folder-open', t:'Open'}, {c:'fa-solid fa-copy', t:'Copy'},
+                    {c:'fa-solid fa-paste', t:'Paste'}, {c:'fa-solid fa-scissors', t:'Cut'},
+                    {c:'fa-solid fa-paperclip', t:'Clip'}, {c:'fa-solid fa-link', t:'Link'},
+                    {c:'fa-solid fa-bold', t:'Bold'}, {c:'fa-solid fa-italic', t:'Ital'},
+                    {c:'fa-solid fa-underline', t:'Undr'}, {c:'fa-solid fa-align-left', t:'Left'},
+                    {c:'fa-solid fa-align-center', t:'Cntr'}, {c:'fa-solid fa-align-right', t:'Rght'},
+                    {c:'fa-solid fa-list-ul', t:'Bul'}, {c:'fa-solid fa-list-ol', t:'Num'}
+                ]
+            },
+            {
+                title: "Social Media (โซเชียล)",
+                items: [
+                    {c:'fa-brands fa-facebook', t:'FB'}, {c:'fa-brands fa-twitter', t:'Twit'},
+                    {c:'fa-brands fa-instagram', t:'IG'}, {c:'fa-brands fa-tiktok', t:'Tik'},
+                    {c:'fa-brands fa-youtube', t:'YT'}, {c:'fa-brands fa-line', t:'Line'},
+                    {c:'fa-brands fa-whatsapp', t:'Whats'}, {c:'fa-brands fa-discord', t:'Disc'},
+                    {c:'fa-brands fa-telegram', t:'Tele'}, {c:'fa-brands fa-linkedin', t:'In'},
+                    {c:'fa-brands fa-pinterest', t:'Pin'}, {c:'fa-brands fa-reddit', t:'Red'},
+                    {c:'fa-brands fa-spotify', t:'Spot'}, {c:'fa-brands fa-twitch', t:'Twch'},
+                    {c:'fa-brands fa-medium', t:'Med'}, {c:'fa-brands fa-google', t:'Goog'},
+                    {c:'fa-brands fa-apple', t:'Appl'}, {c:'fa-brands fa-windows', t:'Win'},
+                    {c:'fa-brands fa-android', t:'Andr'}, {c:'fa-brands fa-chrome', t:'Chrm'}
+                ]
+            },
+            {
+                title: "Misc & Life (ทั่วไป)",
+                items: [
+                    {c:'fa-solid fa-car', t:'Car'}, {c:'fa-solid fa-plane', t:'Plane'},
+                    {c:'fa-solid fa-bus', t:'Bus'}, {c:'fa-solid fa-train', t:'Train'},
+                    {c:'fa-solid fa-bicycle', t:'Bike'}, {c:'fa-solid fa-music', t:'Music'},
+                    {c:'fa-solid fa-gamepad', t:'Game'}, {c:'fa-solid fa-ghost', t:'Ghost'},
+                    {c:'fa-solid fa-mug-hot', t:'Cof'}, {c:'fa-solid fa-burger', t:'Burg'},
+                    {c:'fa-solid fa-pizza-slice', t:'Piz'}, {c:'fa-solid fa-graduation-cap', t:'Grad'},
+                    {c:'fa-solid fa-book', t:'Book'}, {c:'fa-solid fa-lightbulb', t:'Idea'},
+                    {c:'fa-solid fa-fire', t:'Fire'}, {c:'fa-solid fa-droplet', t:'Drop'},
+                    {c:'fa-solid fa-bolt', t:'Bolt'}, {c:'fa-solid fa-snowflake', t:'Snow'},
+                    {c:'fa-solid fa-sun', t:'Sun'}, {c:'fa-solid fa-moon', t:'Moon'},
+                    {c:'fa-solid fa-cloud', t:'Cloud'}, {c:'fa-solid fa-tree', t:'Tree'},
+                    {c:'fa-solid fa-paw', t:'Paw'}, {c:'fa-solid fa-gift', t:'Gift'},
+                    {c:'fa-solid fa-trophy', t:'Win'}, {c:'fa-solid fa-medal', t:'Medal'},
+                    {c:'fa-solid fa-crown', t:'King'}, {c:'fa-solid fa-heart-pulse', t:'Hlth'}
+                ]
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+        const htmlContainer = document.getElementById('html-section');
+        const faContainer = document.getElementById('fa-section');
+        const countHtml = document.getElementById('count-html');
+        const countFa = document.getElementById('count-fa');
+        let currentTab = 'html';
+
+        function renderAll() {
+            // Render HTML
+            let hCount = 0;
+            htmlContainer.innerHTML = '';
+            htmlData.forEach(cat => {
+                const sec = createSection(cat.title, cat.items, 'html');
+                htmlContainer.appendChild(sec);
+                hCount += cat.items.length;
+            });
+            countHtml.innerText = hCount;
+
+            // Render FA
+            let fCount = 0;
+            faContainer.innerHTML = '';
+            faData.forEach(cat => {
+                const sec = createSection(cat.title, cat.items, 'fa');
+                faContainer.appendChild(sec);
+                fCount += cat.items.length;
+            });
+            countFa.innerText = fCount;
+        }
+
+        function createSection(title, items, type) {
+            const section = document.createElement('div');
+            section.className = "mb-8";
+            
+            // Section Header
+            const header = document.createElement('h3');
+            header.className = "text-xl text-orange-400 font-bold mb-4 tech-font flex items-center gap-3 border-b border-white/5 pb-2";
+            header.innerHTML = `<span class="bg-orange-500/20 p-1.5 rounded text-orange-400 text-sm"><i class="fa-solid fa-layer-group"></i></span> ${title} <span class="text-xs text-slate-500 ml-auto font-mono bg-black/30 px-2 py-0.5 rounded">${items.length}</span>`;
+            
+            // Grid
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4";
+            
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-lg p-3 flex flex-col items-center justify-center cursor-pointer group h-24 relative";
+                
+                // Search Tags
+                card.dataset.search = (type === 'html' ? item.l : item.t).toLowerCase() + ' ' + item.c.toLowerCase();
+                
+                // Icon
+                const iconDiv = document.createElement('div');
+                iconDiv.className = "text-2xl mb-2 text-slate-300 group-hover:text-orange-400 transition-colors transform group-hover:scale-110 duration-200";
+                iconDiv.innerHTML = type === 'html' ? item.c : `<i class="${item.c}"></i>`;
+                
+                // Code Text
+                const codeDiv = document.createElement('div');
+                codeDiv.className = "mono-font text-[10px] text-slate-500 bg-black/40 px-2 py-1 rounded w-full text-center truncate group-hover:text-white group-hover:bg-orange-500/20 transition-colors border border-white/5";
+                codeDiv.innerText = type === 'html' ? item.c : `<i class...>`;
+                
+                // Tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = "absolute -top-8 left-1/2 -translate-x-1/2 bg-black/90 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 border border-orange-500/30 shadow-xl";
+                tooltip.innerText = type === 'html' ? item.l : item.t;
+                
+                card.appendChild(iconDiv);
+                card.appendChild(codeDiv);
+                card.appendChild(tooltip);
+                
+                // Click Action
+                card.onclick = () => {
+                    let text = item.c;
+                    if(type === 'fa') text = `<i class="${item.c}"></i>`;
+                    copyToClipboard(text);
+                };
+
+                grid.appendChild(card);
+            });
+
+            section.appendChild(header);
+            section.appendChild(grid);
+            return section;
+        }
+
+        // --- UTILS ---
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${tab}`).classList.add('active');
+            
+            if(tab === 'html') {
+                document.getElementById('html-section').classList.remove('hidden');
+                document.getElementById('fa-section').classList.add('hidden');
+            } else {
+                document.getElementById('html-section').classList.add('hidden');
+                document.getElementById('fa-section').classList.remove('hidden');
+            }
+            filterIcons();
+        }
+
+        function copyToClipboard(text) {
+            const legacyCopy = (txt) => {
+                const ta = document.createElement('textarea');
+                ta.value = txt;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(txt);
+                } catch(e) { console.error(e); }
+                document.body.removeChild(ta);
+            };
+
+            if(navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text)
+                    .then(() => showToast(text))
+                    .catch(() => legacyCopy(text));
+            } else {
+                legacyCopy(text);
+            }
+        }
+
+        function showToast(text) {
+            const t = document.getElementById('toast');
+            const msg = document.getElementById('toast-msg');
+            msg.innerText = `Copied: ${text.substring(0,15)}...`;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        // --- SEARCH ---
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', filterIcons);
+        
+        function filterIcons() {
+            const query = searchInput.value.toLowerCase().trim();
+            const container = currentTab === 'html' ? htmlContainer : faContainer;
+            const sections = container.children;
+            let foundTotal = 0;
+
+            for(let sec of sections) {
+                const grid = sec.querySelector('.grid');
+                if(!grid) continue;
+                
+                const cards = grid.children;
+                let foundSec = 0;
+
+                for(let card of cards) {
+                    if(card.dataset.search.includes(query)) {
+                        card.style.display = 'flex';
+                        foundSec++;
+                        foundTotal++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+                sec.style.display = foundSec > 0 ? 'block' : 'none';
+            }
+            
+            const empty = document.getElementById('empty-state');
+            empty.classList.toggle('hidden', foundTotal > 0);
+        }
+
+        // Init
+        renderAll();
+
+    </script>
+</body>
+</html>
