@@ -188,6 +188,130 @@
         </p>
     </div>
 
+
+        <div class="max-w-7xl mx-auto">
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 tech-font text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-rose-500">
+                ME-RMUTR 2026
+            </h1>
+            <p class="text-slate-400 text-xl">Theme Color Palette</p>
+            <p class="text-slate-500 text-sm mt-2">Click on any card to copy the code</p>
+        </header>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6" id="colorGrid">
+            <!-- Items will be injected here via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        // Data derived specifically from the provided CSS snippet
+        const colors = [
+            // Core Variables
+            { name: "--primary-dark", code: "#1a0a0a", label: "Primary Dark" },
+            { name: "--primary-red", code: "#991b1b", label: "Primary Red" },
+            { name: "--accent-red", code: "#ef4444", label: "Accent Red" },
+            { name: "--accent-orange", code: "#f97316", label: "Accent Orange" },
+            { name: "--accent-rose", code: "#f43f5e", label: "Accent Rose" },
+            
+            // Backgrounds & Gradients
+            { name: "Bg Gradient Mid", code: "#2d1515", label: "Body Gradient Center" },
+            { name: "Navbar / Slate", code: "#0f172a", label: "Navbar & Scrollbar" },
+            { name: "Glass BG", code: "rgba(255, 255, 255, 0.05)", label: "Glass Effect Base" },
+            { name: "Glass Border", code: "rgba(255, 255, 255, 0.1)", label: "Glass Border" },
+            
+            // Typography
+            { name: "Text Main", code: "#e2e8f0", label: "Primary Text" },
+            { name: "Text Muted", code: "#94a3b8", label: "Subtitle Text" },
+            
+            // Effects & Shadows
+            { name: "Particle", code: "rgba(239, 68, 68, 0.5)", label: "Floating Particles" },
+            { name: "Glow Red", code: "rgba(239, 68, 68, 0.3)", label: "Red Glow Shadow" },
+            { name: "Glow Orange", code: "rgba(249, 115, 22, 0.2)", label: "Orange Glow Shadow" },
+            
+            // UI Components
+            { name: "Overlay Black", code: "rgba(0, 0, 0, 0.3)", label: "Footer Overlay" },
+            { name: "Menu Overlay", code: "rgba(15, 23, 42, 0.98)", label: "Mobile Menu Bg" },
+            { name: "Popup Overlay", code: "rgba(0, 0, 0, 0.7)", label: "Modal Backdrop" },
+            
+            // Derived Tints (Common in Tailwind themes like this)
+            { name: "Hover Orange", code: "rgba(249, 115, 22, 0.1)", label: "Button Hover" },
+            { name: "White 10%", code: "rgba(255, 255, 255, 0.1)", label: "Popup Close Bg" },
+            { name: "White 20%", code: "rgba(255, 255, 255, 0.2)", label: "Border Highlight" }
+        ];
+
+        const grid = document.getElementById('colorGrid');
+        const toast = document.getElementById('toast');
+
+        colors.forEach(color => {
+            const isRgba = color.code.startsWith('rgba');
+            
+            const card = document.createElement('div');
+            card.className = 'glass-card overflow-hidden cursor-pointer group';
+            card.onclick = () => copyToClipboard(color.code, color.name);
+
+            // Swatch Container
+            const swatchContainer = document.createElement('div');
+            swatchContainer.className = `color-swatch flex items-center justify-center ${isRgba ? 'checkered' : ''}`;
+
+            // The Color Itself
+            const colorDiv = document.createElement('div');
+            colorDiv.style.backgroundColor = color.code;
+            colorDiv.className = "w-full h-full absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110";
+            
+            swatchContainer.appendChild(colorDiv);
+
+            // Content Container
+            const content = document.createElement('div');
+            content.className = 'p-4';
+
+            // Variable Name
+            const name = document.createElement('div');
+            name.className = 'font-mono text-sm text-orange-400 mb-1 truncate';
+            name.innerText = color.name;
+
+            // Hex/RGBA Code
+            const code = document.createElement('div');
+            code.className = 'font-bold text-gray-200 text-lg tech-font truncate mb-1';
+            code.innerText = color.code;
+
+            // Description Label
+            const label = document.createElement('div');
+            label.className = 'text-xs text-gray-500 uppercase tracking-wider';
+            label.innerText = color.label;
+
+            content.appendChild(name);
+            content.appendChild(code);
+            content.appendChild(label);
+
+            card.appendChild(swatchContainer);
+            card.appendChild(content);
+
+            grid.appendChild(card);
+        });
+
+        function copyToClipboard(text, name) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`Copied ${name}: ${text}`);
+        }
+
+        function showToast(message) {
+            toast.innerText = message;
+            toast.className = "toast show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
+    
+
     <div class="showcase-container">
         <!-- Colors Section -->
         <section class="demo-section fade-in">
@@ -686,5 +810,6 @@
         document.querySelector('.fade-in').classList.add('visible');
     </script>
 </body>
+
 
 </html>
